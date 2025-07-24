@@ -819,7 +819,7 @@
                 }
                 
                 .holiday-table th {
-                    background-color: #3498db;
+                    background-color: #ad2a24;
                     color: white;
                     padding: 12px 10px;
                     text-align: left;
@@ -839,12 +839,12 @@
                 }
                 
                 .holiday-table tr:hover {
-                    background-color: #e8f4fc;
+                    background-color: #f5e6e5;
                 }
                 
                 /* Link styling */
                 .holiday-link {
-                    color: #2980b9;
+                    color: #ad2a24;
                     text-decoration: none;
                     font-weight: 500;
                     word-break: break-word;
@@ -852,6 +852,7 @@
                 
                 .holiday-link:hover {
                     text-decoration: underline;
+                    color: #8a1f1a;
                 }
                 
                 /* Footer note */
@@ -919,7 +920,7 @@
             
             <h1>Upcoming US Holidays</h1>
             <div id="upcoming-holidays-container"></div>
-            <p class="disclaimer">Showing holidays from today onward (New York time)</p>
+            <p class="disclaimer">Showing holidays from today until the end of the year (New York time)</p>
         </div>
         `;
 
@@ -931,6 +932,13 @@
             const month = today.toLocaleString("en-US", { month: "2-digit", ...options });
             const day = today.toLocaleString("en-US", { day: "2-digit", ...options });
             return `${year}-${month}-${day}`;
+        }
+
+        function getEndOfYearDate() {
+            const options = { timeZone: "America/New_York" };
+            const today = new Date();
+            const year = today.toLocaleString("en-US", { year: "numeric", ...options });
+            return `${year}-12-31`;
         }
 
         function formatDateForDisplay(dateStr) {
@@ -951,14 +959,15 @@
 
         function processHolidayData() {
             const today = getCurrentDateInNY();
+            const endOfYear = getEndOfYearDate();
             const upcomingHolidays = [];
             
             holidaysData.forEach(holiday => {
                 // Clean and split the dates string
                 const dateStrings = holiday.Dates.split(/\s*,\s*/);
                 
-                // Find the next occurrence of this holiday
-                const nextDate = dateStrings.find(date => date >= today);
+                // Find the next occurrence of this holiday within current year
+                const nextDate = dateStrings.find(date => date >= today && date <= endOfYear);
                 
                 if (nextDate) {
                     upcomingHolidays.push({
@@ -981,7 +990,7 @@
             const holidays = processHolidayData();
             
             if (holidays.length === 0) {
-                container.innerHTML = '<div class="no-upcoming">No upcoming holidays found.</div>';
+                container.innerHTML = '<div class="no-upcoming">No upcoming holidays found for the rest of this year.</div>';
                 return;
             }
             
