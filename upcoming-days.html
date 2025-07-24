@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming US Holidays</title>
+</head>
+<body>
+    <div id="HolidayContainer"></div>
+
+    <script>
+        const holidaysData = [
+            
+  {
+    "Title": "Abraham Lincoln's Birthday",
+    "Target URL": "https://www.almanac.com/abraham-lincoln-almanac-and-murder-trial",
+    "Dates": "2025-02-12 , 2026-02-12 , 2027-02-12 , 2028-02-12"
+  },
+  {
+    "Title": "Advent Sunday",
+    "Target URL": " ",
+    "Dates": "2024-12-01 , 2025-11-30 , 2026-11-29 , 2027-11-28 , 2028-12-03"
+  },
+  {
+    "Title": "Alaska Day",
+    "Target URL": " ",
+    "Dates": "2024-10-18 , 2025-10-18 , 2026-10-18 , 2027-10-28 , 2028-10-28"
+  },
+  {
+    "Title": "All Saints' Day",
+    "Target URL": " ",
+    "Dates": "2024-11-01 , 2025-11-01 , 2026-11-01 , 2027-11-01 , 2028-11-01"
+  },
+  {
+    "Title": "All Souls' Day",
+    "Target URL": " ",
+    "Dates": "2024-11-02 , 2025-11-02 , 2026-11-02 , 2027-11-02 , 2028-11-02"
+  },
+  {
+    "Title": "Annunciation or Lady Day",
+    "Target URL": " ",
+    "Dates": "2025-03-25 , 2026-03-25 , 2027-03-25 , 2028-03-25"
+  },
+  {
+    "Title": "April Fools\u2019 Day",
+    "Target URL": "https://www.almanac.com/when-april-fools-day-and-how-did-it-start",
+    "Dates": "2025-04-01 , 2026-04-01 , 2027-04-01 , 2028-04-01"
+  },
+  {
+    "Title": "Armed Forces Day",
+    "Target URL": " ",
+    "Dates": "2025-05-17 , 2026-05-16 , 2027-05-15 , 2028-05-20"
+  },
+  {
+    "Title": "Ash Wednesday",
+    "Target URL": NaN,
+    "Dates": "2025-03-05 , 2026-02-18 , 2027-02-10 , 2028-03-01"
+  },
+  {
+    "Title": "Assumption of the Blessed Virgin Mary",
+    "Target URL": " ",
+    "Dates": "2024-08-15 , 2025-08-15 , 2026-08-15 , 2027-08-15 , 2028-08-15"
+  },
+  {
+    "Title": "Autumnal Equinox",
+    "Target URL": "https://www.almanac.com/content/autumnal-equinox",
+    "Dates": "2024-09-22 , 2025-09-22 , 2026-09-22 , 2027-09-23 , 2028-09-22"
+  },
+  {
+    "Title": "Bastille Day",
+    "Target URL": NaN,
+    "Dates": "2025-07-14 , 2026-07-14 , 2027-07-14 , 2028-07-14"
+  },
+  {
+    "Title": "Benjamin Franklin's Birthday",
+    "Target URL": " ",
+    "Dates": "2025-01-17 , 2026-01-17 , 2027-01-17 , 2028-01-17"
+  },
+  {
+    "Title": "Bennington Battle Day (Vt.)",
+    "Target URL": " ",
+    "Dates": "2024-08-16 , 2025-08-16 , 2026-08-16 , 2027-08-16 , 2028-08-16"
+  },
+  {
+    "Title": "Bill of Rights Day (U.S.)",
+    "Target URL": " ",
+    "Dates": "2025-12-15 , 2026-12-15 , 2027-12-15 , 2028-12-15"
+  },
+  {
+    "Title": "Borrowing Days",
+    "Target URL": " ",
+    "Dates": "2025-03-29 , 2026-03-29 , 2027-03-29 , 2028-03-29"
+  },
+  {
+    "Title": "Boxing Day",
+    "Target URL": "https://www.almanac.com/boxing-day",
+    "Dates": "2024-12-26 , 2025-12-26 , 2026-12-26 , 2027-12-26 , 2028-12-26"
+  },
+  {
+    "Title": "Bunker Hill Day (Suffolk Co., Mass.)",
+    "Target URL": " ",
+    "Dates": "2025-06-17 , 2026-06-17 , 2027-06-17 , 2028-06-17"
+  },
+  {
+    "Title": "Burns Night",
+    "Target URL": " ",
+    "Dates": "2025-01-25 , 2026-01-25 , 2027-01-25 , 2028-01-25"
+  },
+  {
+    "Title": "Canada Day",
+    "Target URL": "https://www.almanac.com/canada-day",
+    "Dates": "2025-07-01 , 2026-07-01 , 2027-07-01 , 2028-07-01"
+  },
+  {
+    "Title": "Candlemas / Groundhog Day",
+    "Target URL": "https://www.almanac.com/groundhog-day",
+    "Dates": "2025-02-02 , 2026-02-02 , 2027-02-02 , 2028-02-02"
+  },
+  {
+    "Title": "Cat Nights Begin",
+    "Target URL": " ",
+    "Dates": "2024-08-17 , 2025-08-17 , 2026-08-17 , 2027-08-17 , 2028-08-17"
+  },
+  {
+    "Title": "Child Health Day",
+    "Target URL": " ",
+    "Dates": "2024-10-07 , 2025-10-06 , 2026-10-05 , 2027-10-04 , 2028-10-02"
+  },
+  {
+    "Title": "Chinese New Year",
+    "Target URL": "https://www.almanac.com/content/chinese-new-year-chinese-zodiac",
+    "Dates": "2025-01-29 , 2026-02-17 , 2027-02-06 , 2028-01-26"
+  },
+  {
+    "Title": "Christmas Day",
+    "Target URL": "https://www.almanac.com/christmas-day",
+    "Dates": "2024-12-25 , 2025-12-25 , 2026-12-25 , 2027-12-25 , 2028-12-25"
+  },
+  {
+    "Title": "Cinco de Mayo",
+    "Target URL": "https://www.almanac.com/cinco-de-mayo-meaning-food-and-facts",
+    "Dates": "2025-05-05 , 2026-05-05 , 2027-05-05 , 2028-05-05"
+  },
+  {
+    "Title": "Columbus Day",
+    "Target URL": "https://www.almanac.com/columbus-day",
+    "Dates": "2024-10-14 , 2025-10-13 , 2026-10-12 , 2027-10-11 , 2028-10-09"
+  },
+  {
+    "Title": "Commonwealth Day (Canada)",
+    "Target URL": " ",
+    "Dates": "2025-03-10 , 2026-03-09 , 2027-03-08 , 2028-03-13"
+  },
+  {
+    "Title": "Constitution Day and Citizenship Day (United States)",
+    "Target URL": " ",
+    "Dates": "2024-09-17 , 2025-09-17 , 2026-09-17 , 2027-09-17 , 2028-09-17"
+  },
+  {
+    "Title": "Daylight Saving Time Begins",
+    "Target URL": "https://www.almanac.com/content/when-daylight-saving-time",
+    "Dates": "2025-03-09 , 2026-03-08 , 2027-03-14 , 2028-03-12"
+  },
+  {
+    "Title": "Daylight Saving Time Ends",
+    "Target URL": "https://www.almanac.com/content/when-daylight-saving-time",
+    "Dates": "2024-11-03 , 2025-11-02 , 2026-11-01 , 2027-11-07 , 2028-11-05"
+  },
+  {
+    "Title": "Distaff Day",
+    "Target URL": " ",
+    "Dates": "2025-01-07 , 2026-01-07 , 2027-01-07 , 2028-01-07"
+  },
+  {
+    "Title": "Earth Day",
+    "Target URL": "https://www.almanac.com/earth-day",
+    "Dates": "2025-04-22 , 2026-04-22 , 2027-04-22 , 2028-04-22"
+  },
+  {
+    "Title": "Easter Sunday",
+    "Target URL": "https://www.almanac.com/content/when-is-easter",
+    "Dates": "2026-04-05 , 2027-03-28 , 2028-04-16"
+  },
+  {
+    "Title": "Election Day (United States)",
+    "Target URL": "https://www.almanac.com/content/when-election-day",
+    "Dates": "2024-11-05 , 2025-11-05 , 2026-11-03 , 2027-11-02 , 2028-11-07"
+  },
+  {
+    "Title": "Emancipation Day (Canada)",
+    "Target URL": " ",
+    "Dates": "2024-08-01 , 2025-08-01 , 2026-08-01 , 2027-08-01 , 2028-08-01"
+  },
+  {
+    "Title": "Ember Days",
+    "Target URL": "https://www.almanac.com/ember-days",
+    "Dates": "2024-09-18 , 2024-09-20 , 2024-09-21 , 2024-12-18 , 2024-12-20 , 2024-12-21 , 2025-03-12 , 2025-03-14 , 2025-03-15 , 2025-06-11 , 2025-06-13 , 2025-06-14 , 2025-09-17 , 2025-09-19 , 2025-09-20 , 2025-12-17 , 2025-12-19 , 2025-12-20 , 2026-02-18 , 2026-02-20 , 2026-02-21 , 2026-06-27 , 2026-06-29 , 2026-06-30 , 2026-09-16 , 2026-09-18 , 2026-09-19 , 2026-12-16 , 2026-12-18 , 2026-12-19 , 2027-02-17 , 2027-02-19 , 2027-02-20 , 2027-05-19 , 2027-05-21 , 2027-05-22 , 2027-09-15 , 2027-09-17 , 2027-09-18 , 2027-12-15 , 2027-12-17 , 2027-12-18 , 2028-03-08 , 2028-03-10 , 2028-03-11 , 2028-06-07 , 2028-06-09 , 2028-06-10 , 2028-09-20 , 2028-09-22 , 2028-09-23 , 2028-12-20 , 2028-12-22 , 2028-12-23"
+  },
+  {
+    "Title": "Epiphany",
+    "Target URL": " ",
+    "Dates": "2025-01-06 , 2026-01-06 , 2027-01-06 , 2028-01-06"
+  },
+  {
+    "Title": "Evacuation Day (Suffolk County, Massachussets)",
+    "Target URL": " ",
+    "Dates": "2025-03-17 , 2026-03-17 , 2027-03-17 , 2028-03-17"
+  },
+  {
+    "Title": "Father's Day",
+    "Target URL": "https://www.almanac.com/content/fathers-day",
+    "Dates": "2025-06-15 , 2026-06-21 , 2027-06-20 , 2028-06-18"
+  },
+  {
+    "Title": "Feast Day of St. Francis of Assisi",
+    "Target URL": " ",
+    "Dates": "2024-10-04 , 2025-10-04 , 2026-10-04 , 2027-10-04 , 2028-10-04"
+  },
+  {
+    "Title": "First Day of Kwanzaa",
+    "Target URL": "https://www.almanac.com/content/when-is-kwanzaa",
+    "Dates": "2024-12-26 , 2025-12-26 , 2026-12-26 , 2027-12-26 , 2028-12-26"
+  },
+  {
+    "Title": "First of Muharram (at sundown)",
+    "Target URL": " ",
+    "Dates": "2025-06-26 , 2026-06-16 , 2027-06-05 , 2028-05-25"
+  },
+  {
+    "Title": "Flag Day (United States)",
+    "Target URL": "https://www.almanac.com/flag-day-united-states",
+    "Dates": "2025-06-14 , 2026-06-14 , 2027-06-14 , 2028-06-14"
+  },
+  {
+    "Title": "Good Friday",
+    "Target URL": NaN,
+    "Dates": "2025-04-18 , 2026-04-03 , 2027-03-26 , 2028-04-14"
+  },
+  {
+    "Title": "Grandparents Day",
+    "Target URL": "https://www.almanac.com/content/when-grandparents-day",
+    "Dates": "2024-09-08 , 2025-09-07 , 2026-09-14 , 2027-09-12 , 2028-09-10"
+  },
+  {
+    "Title": "Halcyon Days begin",
+    "Target URL": " ",
+    "Dates": "2024-12-14 , 2025-12-14 , 2026-12-14 , 2027-12-14 , 2028-12-14"
+  },
+  {
+    "Title": "Halloween (All Hallows' Eve)",
+    "Target URL": "https://www.almanac.com/halloween-all-hallows-eve",
+    "Dates": "2024-10-31 , 2025-10-31 , 2026-10-31 , 2027-10-31 , 2028-10-31"
+  },
+  {
+    "Title": "Handsel Monday",
+    "Target URL": " ",
+    "Dates": "2025-01-06 , 2026-01-05 , 2027-01-04 , 2028-01-03"
+  },
+  {
+    "Title": "Hanukkah Begins",
+    "Target URL": "https://www.almanac.com/hanukkah",
+    "Dates": "2024-12-25 , 2025-12-14 , 2026-12-04 , 2027-12-24 , 2028-12-12"
+  },
+  {
+    "Title": "Harvest Home",
+    "Target URL": " ",
+    "Dates": "2024-09-01 , 2025-09-01 , 2026-09-01 , 2027-09-01 , 2028-09-01"
+  },
+  {
+    "Title": "Hogmanay",
+    "Target URL": " ",
+    "Dates": "2024-12-31 , 2025-12-31 , 2026-12-31 , 2027-12-31 , 2028-12-31"
+  },
+  {
+    "Title": "Holy Cross Day",
+    "Target URL": NaN,
+    "Dates": "2024-09-14 , 2025-09-14 , 2026-09-14 , 2027-09-14 , 2028-09-14"
+  },
+  {
+    "Title": "Ides of March",
+    "Target URL": "https://www.almanac.com/ides-of-march",
+    "Dates": "2025-03-15 , 2026-03-15 , 2027-03-15 , 2028-03-15"
+  },
+  {
+    "Title": "Independence Day (Mexico)",
+    "Target URL": " ",
+    "Dates": "2024-09-16 , 2025-09-16 , 2026-09-16 , 2027-09-16 , 2028-09-16"
+  },
+  {
+    "Title": "Independence Day (U.S.)",
+    "Target URL": "https://www.almanac.com/content/independence-day-fourth-of-july",
+    "Dates": "2024-07-04 , 2025-07-04 , 2026-07-04 , 2027-07-04 , 2028-07-04"
+  },
+  {
+    "Title": "Indian Summer",
+    "Target URL": "https://www.almanac.com/indian-summer-meaning-what-indian-summer-or-second-summer",
+    "Dates": "2024-11-11 , 2025-11-11 , 2026-11-11 , 2027-11-11 , 2028-11-11"
+  },
+  {
+    "Title": "Indigenous Peoples' Day",
+    "Target URL": "https://www.almanac.com/indigenous-peoples-day",
+    "Dates": "2024-10-14 , 2025-10-13 , 2026-10-12 , 2027-10-11 , 2028-10-09"
+  },
+  {
+    "Title": "International Day of Peace",
+    "Target URL": " ",
+    "Dates": "2024-09-21 , 2025-09-21 , 2026-09-21 , 2027-09-21 , 2028-09-21"
+  },
+  {
+    "Title": "International Holocaust Remembrance Day",
+    "Target URL": " ",
+    "Dates": "2025-01-27 , 2026-01-27 , 2027-01-27 , 2028-01-27"
+  },
+  {
+    "Title": "International Women's Day",
+    "Target URL": " ",
+    "Dates": "2025-03-08 , 2026-03-08 , 2027-03-08 , 2028-03-09"
+  },
+  {
+    "Title": "Johnny Appleseed Day",
+    "Target URL": "https://www.almanac.com/when-johnny-appleseed-day-and-who-was-johnny-appleseed",
+    "Dates": "2024-09-26 , 2025-09-26 , 2026-09-26 , 2027-09-26 , 2028-09-26"
+  },
+  {
+    "Title": "Juneteenth (Emancipation Day)",
+    "Target URL": "https://www.almanac.com/juneteenth",
+    "Dates": "2024-06-19 , 2025-06-19 , 2026-06-19 , 2027-06-19 , 2028-06-19"
+  },
+  {
+    "Title": "Kentucky Derby",
+    "Target URL": " ",
+    "Dates": "2024-05-04 , 2025-05-03 , 2026-05-02 , 2027-05-01 , 2028-05-06"
+  },
+  {
+    "Title": "King Kamehameha I Day (Hawaii)",
+    "Target URL": " ",
+    "Dates": "2025-06-11 , 2026-06-11 , 2027-06-11 , 2028-06-11"
+  },
+  {
+    "Title": "Labor Day",
+    "Target URL": "https://www.almanac.com/labor-day",
+    "Dates": "2025-09-01 , 2026-09-07 , 2027-09-06 , 2028-09-04"
+  },
+  {
+    "Title": "Lammas Day",
+    "Target URL": "https://www.almanac.com/quarter-days-and-cross-quarter-days",
+    "Dates": "2024-08-01 , 2025-08-01 , 2026-08-01 , 2027-08-01 , 2028-08-01"
+  },
+  {
+    "Title": "Leif Eriksson Day",
+    "Target URL": " ",
+    "Dates": "2024-10-09 , 2025-10-09 , 2026-10-09 , 2027-10-09 , 2028-10-09"
+  },
+  {
+    "Title": "Lyndon B. Johnson's Birthday",
+    "Target URL": " ",
+    "Dates": "2024-08-27 , 2025-08-27 , 2026-08-27 , 2027-08-27 , 2028-08-27"
+  },
+  {
+    "Title": "Mardi Gras/Shrove Tuesday",
+    "Target URL": "https://www.almanac.com/content/when-mardi-gras",
+    "Dates": "2025-03-04 , 2026-02-17 , 2027-02-09 , 2028-02-29"
+  },
+  {
+    "Title": "Martin Luther King Jr.'s Birthday (observed)",
+    "Target URL": "https://www.almanac.com/content/when-martin-luther-king-jr-day",
+    "Dates": "2025-01-15 , 2026-01-19 , 2027-01-18 , 2028-01-17"
+  },
+  {
+    "Title": "Maundy Thursday",
+    "Target URL": " ",
+    "Dates": "2025-04-17 , 2026-04-02 , 2027-03-25 , 2028-04-13"
+  },
+  {
+    "Title": "May Day",
+    "Target URL": " ",
+    "Dates": "2025-05-01 , 2026-05-01 , 2027-05-01 , 2028-05-01"
+  },
+  {
+    "Title": "Memorial Day",
+    "Target URL": "https://www.almanac.com/memorial-day",
+    "Dates": "2025-05-26 , 2026-05-25 , 2027-05-31 , 2028-05-29"
+  },
+  {
+    "Title": "Michaelmas",
+    "Target URL": "https://www.almanac.com/quarter-days-and-cross-quarter-days",
+    "Dates": "2024-09-29 , 2025-09-29 , 2026-09-29 , 2027-09-29 , 2028-09-29"
+  },
+  {
+    "Title": "Midsummer Day",
+    "Target URL": "https://www.almanac.com/quarter-days-and-cross-quarter-days",
+    "Dates": "2025-06-24 , 2026-06-24 , 2027-06-24 , 2028-06-24"
+  },
+  {
+    "Title": "Mother's Day",
+    "Target URL": "https://www.almanac.com/content/mothers-day",
+    "Dates": "2025-05-11 , 2026-05-10 , 2027-05-09 , 2028-05-14"
+  },
+  {
+    "Title": "Mothering Sunday",
+    "Target URL": " ",
+    "Dates": "2025-03-30 , 2026-03-15 , 2027-03-07 , 2028-03-26"
+  },
+  {
+    "Title": "National Arbor Day",
+    "Target URL": "https://www.almanac.com/content/arbor-day-history-facts-date",
+    "Dates": "2025-04-25 , 2026-04-24 , 2027-04-30 , 2028-04-28"
+  },
+  {
+    "Title": "National Aviation Day",
+    "Target URL": " ",
+    "Dates": "2025-08-19 , 2026-08-19 , 2027-08-19 , 2028-08-19"
+  },
+  {
+    "Title": "National Day of the Cowboy",
+    "Target URL": " ",
+    "Dates": "2025-07-26 , 2026-07-25 , 2027-07-24 , 2028-07-22"
+  },
+  {
+    "Title": "National Flag of Canada Day",
+    "Target URL": " ",
+    "Dates": "2025-02-15 , 2026-02-15 , 2027-02-15 , 2028-02-15"
+  },
+  {
+    "Title": "National Indigenous Peoples Day (Canada)",
+    "Target URL": " ",
+    "Dates": "2025-06-21 , 2026-06-21 , 2027-06-21 , 2028-06-21"
+  },
+  {
+    "Title": "National Maritime Day (United States)",
+    "Target URL": " ",
+    "Dates": "2025-05-22 , 2026-05-22 , 2027-05-22 , 2028-05-22"
+  },
+  {
+    "Title": "National Pearl Harbor Remembrance Day",
+    "Target URL": " ",
+    "Dates": "2024-12-07 , 2025-12-07 , 2026-12-07 , 2027-12-07 , 2028-12-07"
+  },
+  {
+    "Title": "National POW/MIA Recognition Day",
+    "Target URL": " ",
+    "Dates": "2024-09-20 , 2025-09-19 , 2026-09-18 , 2027-09-17 , 2028-09-15"
+  },
+  {
+    "Title": "National Vietnam War Veterans Day (U.S.)",
+    "Target URL": " ",
+    "Dates": "2025-03-29 , 2026-03-29 , 2027-03-29 , 2028-03-29"
+  },
+  {
+    "Title": "New Year's Day",
+    "Target URL": "https://www.almanac.com/new-years-day",
+    "Dates": "2025-01-01 , 2026-01-01 , 2027-01-01 , 2028-01-01"
+  },
+  {
+    "Title": "Noah Webster's Birthday",
+    "Target URL": " ",
+    "Dates": "2024-10-16 , 2025-10-16 , 2026-10-16 , 2027-10-16 , 2028-10-16"
+  },
+  {
+    "Title": "Nunavut Day (Canada)",
+    "Target URL": " ",
+    "Dates": "2025-07-09 , 2026-07-09 , 2027-07-09 , 2028-07-09"
+  },
+  {
+    "Title": "Orthodox Christmas",
+    "Target URL": NaN,
+    "Dates": "2025-01-07 , 2026-01-07 , 2027-01-07 , 2028-01-07"
+  },
+  {
+    "Title": "Orthodox Easter",
+    "Target URL": NaN,
+    "Dates": "2025-04-20 , 2026-04-12 , 2027-05-02 , 2028-04-16"
+  },
+  {
+    "Title": "Orthodox Lent Begins",
+    "Target URL": " ",
+    "Dates": "2025-03-03 , 2026-02-23 , 2027-03-15 , 2028-02-28"
+  },
+  {
+    "Title": "Palm Sunday",
+    "Target URL": NaN,
+    "Dates": "2025-04-13 , 2026-03-29 , 2027-03-21 , 2028-04-09"
+  },
+  {
+    "Title": "Passover Begins",
+    "Target URL": " ",
+    "Dates": "2025-04-12 , 2026-04-01 , 2027-04-21 , 2028-04-10"
+  },
+  {
+    "Title": "Patriot Day (United States)",
+    "Target URL": NaN,
+    "Dates": "2024-09-11 , 2025-09-11 , 2026-09-11 , 2027-09-11 , 2028-09-11"
+  },
+  {
+    "Title": "Patriots Day",
+    "Target URL": " ",
+    "Dates": "2025-04-21 , 2026-04-20 , 2027-04-19 , 2028-04-17"
+  },
+  {
+    "Title": "Pioneer Day (Utah)",
+    "Target URL": " ",
+    "Dates": "2024-07-24 , 2025-07-24 , 2026-07-24 , 2027-07-24 , 2028-07-24"
+  },
+  {
+    "Title": "Plough Monday",
+    "Target URL": " ",
+    "Dates": "2025-01-13 , 2026-01-12 , 2027-01-11 , 2028-01-10"
+  },
+  {
+    "Title": "Presidents' Day (U.S.)",
+    "Target URL": "https://www.almanac.com/content/presidents-day",
+    "Dates": "2025-02-17 , 2026-02-16 , 2027-02-15 , 2028-02-21"
+  },
+  {
+    "Title": "Purim Begins (at sundown)",
+    "Target URL": " ",
+    "Dates": "2025-03-13 , 2026-03-02 , 2027-03-22 , 2028-03-11"
+  },
+  {
+    "Title": "Quinquagesima",
+    "Target URL": " ",
+    "Dates": "2025-03-02 , 2026-02-15 , 2027-02-07 , 2028-02-27"
+  },
+  {
+    "Title": "Ramadan Begins",
+    "Target URL": "https://www.almanac.com/ramadan",
+    "Dates": "2024-03-10 , 2025-02-28 , 2026-02-17 , 2027-02-07 , 2028-01-27"
+  },
+  {
+    "Title": "Remembrance Day (Canada)",
+    "Target URL": "https://www.almanac.com/remembrance-day-canada",
+    "Dates": "2024-11-11 , 2025-11-11 , 2026-11-11 , 2027-11-11 , 2028-11-11"
+  },
+  {
+    "Title": "Robert B. Thomas's Birthday",
+    "Target URL": " ",
+    "Dates": "2025-04-24 , 2026-04-24 , 2027-04-24 , 2028-04-24"
+  },
+  {
+    "Title": "Rosh Hashanah Begins",
+    "Target URL": "https://www.almanac.com/content/when-is-rosh-hashanah",
+    "Dates": "2024-10-02 , 2025-09-22 , 2026-09-11 , 2027-10-01 , 2028-09-20"
+  },
+  {
+    "Title": "Sadie Hawkins Day",
+    "Target URL": "https://www.almanac.com/extra/when-sadie-hawkins-day",
+    "Dates": "2024-11-02 , 2025-11-01 , 2026-11-07 , 2027-11-06 , 2028-11-04"
+  },
+  {
+    "Title": "Second Summer",
+    "Target URL": "https://www.almanac.com/indian-summer-meaning-what-indian-summer-or-second-summer",
+    "Dates": "2024-11-11 , 2025-11-11 , 2026-11-11 , 2027-11-11 , 2028-11-11"
+  },
+  {
+    "Title": "Sexagesima",
+    "Target URL": " ",
+    "Dates": "2025-02-23 , 2026-02-08 , 2027-01-31 , 2028-02-20"
+  },
+  {
+    "Title": "Shavuot Begins",
+    "Target URL": " ",
+    "Dates": "2024-06-11 , 2025-06-01 , 2026-05-21 , 2027-06-10 , 2028-05-30"
+  },
+  {
+    "Title": "St. Bartholomew",
+    "Target URL": " ",
+    "Dates": "2024-08-24 , 2025-08-24 , 2026-08-24 , 2027-08-24 , 2028-08-25"
+  },
+  {
+    "Title": "St. David\u2019s Day",
+    "Target URL": " ",
+    "Dates": "2025-03-01 , 2026-03-01 , 2027-03-01 , 2028-03-01"
+  },
+  {
+    "Title": "St. Dunstan's Day",
+    "Target URL": " ",
+    "Dates": "2025-05-19 , 2026-05-19 , 2027-05-19 , 2028-05-19"
+  },
+  {
+    "Title": "St. Knut's Day",
+    "Target URL": " ",
+    "Dates": "2025-01-13 , 2026-01-13 , 2027-01-13 , 2028-01-13"
+  },
+  {
+    "Title": "St. Lawrence's Day",
+    "Target URL": " ",
+    "Dates": "2024-08-10 , 2025-08-10 , 2026-08-10 , 2027-08-10 , 2028-08-10"
+  },
+  {
+    "Title": "St. Lucia",
+    "Target URL": " ",
+    "Dates": "2024-12-13 , 2025-12-13 , 2026-12-13 , 2027-12-13 , 2028-12-13"
+  },
+  {
+    "Title": "St. Luke's Little Summer",
+    "Target URL": " ",
+    "Dates": "2024-10-18 , 2025-10-18 , 2026-10-18 , 2027-10-18 , 2028-10-18"
+  },
+  {
+    "Title": "St. Nicholas Day",
+    "Target URL": " ",
+    "Dates": "2024-12-06 , 2025-12-06 , 2026-12-06 , 2027-12-06 , 2028-12-06"
+  },
+  {
+    "Title": "St. Patrick's Day",
+    "Target URL": "https://www.almanac.com/content/st-patricks-day",
+    "Dates": "2025-03-17 , 2026-03-17 , 2027-03-17 , 2028-03-17"
+  },
+  {
+    "Title": "St. Swithin\u2019s Day",
+    "Target URL": " ",
+    "Dates": "2024-07-15 , 2025-07-15 , 2026-07-15 , 2027-07-15 , 2028-07-15"
+  },
+  {
+    "Title": "St. Urho's Day",
+    "Target URL": " ",
+    "Dates": "2025-03-16 , 2026-03-16 , 2027-03-16 , 2028-03-16"
+  },
+  {
+    "Title": "St. Valentine",
+    "Target URL": "https://www.almanac.com/content/st-valentines-day",
+    "Dates": "2025-02-14 , 2026-02-14 , 2027-02-14 , 2028-02-14"
+  },
+  {
+    "Title": "Summer Solstice",
+    "Target URL": "https://www.almanac.com/summer-solstice",
+    "Dates": "2025-06-20 , 2026-06-21 , 2027-06-21 , 2028-06-20"
+  },
+  {
+    "Title": "Susan B. Anthony's Birthday",
+    "Target URL": " ",
+    "Dates": "2025-02-15 , 2026-02-15 , 2027-02-15 , 2028-02-15"
+  },
+  {
+    "Title": "Texas Independence Day",
+    "Target URL": " ",
+    "Dates": "2025-03-02 , 2026-03-02 , 2027-03-02 , 2028-03-02"
+  },
+  {
+    "Title": "Thanksgiving (Canada)",
+    "Target URL": "https://www.almanac.com/thanksgiving-canada",
+    "Dates": "2024-10-14 , 2025-10-13 , 2026-10-12 , 2027-10-11 , 2028-10-09"
+  },
+  {
+    "Title": "Thanksgiving Day",
+    "Target URL": "https://www.almanac.com/thanksgiving-day",
+    "Dates": "2024-11-28 , 2025-11-27 , 2026-11-26 , 2027-11-25 , 2028-11-23"
+  },
+  {
+    "Title": "The Day of the Dead (Mexico)",
+    "Target URL": " ",
+    "Dates": "2024-11-01 , 2025-11-01 , 2026-11-01 , 2027-11-01 , 2028-11-01"
+  },
+  {
+    "Title": "Thomas Jefferson's Birthday",
+    "Target URL": " ",
+    "Dates": "2025-04-13 , 2026-04-13 , 2027-04-13 , 2028-04-13"
+  },
+  {
+    "Title": "Three Chilly Saints",
+    "Target URL": " ",
+    "Dates": "2025-05-11 , 2026-05-11 , 2027-05-11 , 2028-05-11"
+  },
+  {
+    "Title": "Truman Day (Missouri)",
+    "Target URL": " ",
+    "Dates": "2025-05-08 , 2026-05-08 , 2027-05-08 , 2028-05-08"
+  },
+  {
+    "Title": "Twelfth Night",
+    "Target URL": "https://www.almanac.com/what-are-12-days-christmas",
+    "Dates": "2025-01-05 , 2026-01-05 , 2027-01-05 , 2028-01-05"
+  },
+  {
+    "Title": "United Nations Day",
+    "Target URL": NaN,
+    "Dates": "2024-10-24 , 2025-10-24 , 2026-10-24 , 2027-10-24 , 2028-10-24"
+  },
+  {
+    "Title": "Vernal Equinox",
+    "Target URL": "https://www.almanac.com/content/first-day-spring-vernal-equinox",
+    "Dates": "2025-03-20 , 2026-03-20 , 2027-03-20 , 2028-03-19"
+  },
+  {
+    "Title": "Veteran's Day (United States)",
+    "Target URL": "https://www.almanac.com/veterans-day",
+    "Dates": "2024-11-11 , 2025-11-11 , 2026-11-11 , 2027-11-11 , 2028-11-11"
+  },
+  {
+    "Title": "Victoria Day (Canada)",
+    "Target URL": "https://www.almanac.com/victoria-day-canada",
+    "Dates": "2025-05-19 , 2026-05-18 , 2027-05-24 , 2028-05-22"
+  },
+  {
+    "Title": "West Virginia Day",
+    "Target URL": " ",
+    "Dates": "2025-06-20 , 2026-06-20 , 2027-06-20 , 2028-06-20"
+  },
+  {
+    "Title": "Whitsunday-Pentecost",
+    "Target URL": " ",
+    "Dates": "2024-05-19 , 2025-06-08 , 2026-05-24 , 2027-05-16 , 2028-06-04"
+  },
+  {
+    "Title": "Will Rogers Day",
+    "Target URL": " ",
+    "Dates": "2024-11-04 , 2025-11-04 , 2026-11-04 , 2027-11-04 , 2028-11-04"
+  },
+  {
+    "Title": "Winter Solstice",
+    "Target URL": "https://www.almanac.com/winter-solstice",
+    "Dates": "2024-12-21 , 2025-12-21 , 2026-12-21 , 2027-12-21 , 2028-12-21"
+  },
+  {
+    "Title": "Women's Equality Day",
+    "Target URL": " ",
+    "Dates": "2024-08-26 , 2025-08-26 , 2026-08-26 , 2027-08-26 , 2028-08-27"
+  },
+  {
+    "Title": "World Environment Day",
+    "Target URL": " ",
+    "Dates": "2025-06-05 , 2026-06-05 , 2027-06-05 , 2028-06-05"
+  },
+  {
+    "Title": "Wright Brothers Day",
+    "Target URL": " ",
+    "Dates": "2024-12-17 , 2025-12-17 , 2026-12-17 , 2027-12-17 , 2028-12-17"
+  },
+  {
+    "Title": "Yom Kippur Begins",
+    "Target URL": "https://www.almanac.com/content/when-yom-kippur",
+    "Dates": "2024-10-11 , 2025-10-01 , 2026-09-20 , 2027-10-10 , 2028-09-29"
+  },
+  {
+    "Title": "D-Day",
+    "Target URL": "https://www.almanac.com/when-was-d-day-and-what-happened-day",
+    "Dates": "2026-06-06 , 2027-06-06 , 2028-06-06"
+  },
+  {
+    "Title": "Christa McAuliffe Day",
+    "Target URL": NaN,
+    "Dates": "2026-01-28 , 2027-01-28 , 2028-01-28"
+  },
+  {
+    "Title": "Women\u2019s History Month Begins",
+    "Target URL": NaN,
+    "Dates": "2026-03-01 , 2027-03-01 , 2028-03-01"
+  },
+  {
+    "Title": "Harriet Tubman Day",
+    "Target URL": NaN,
+    "Dates": "2026-03-10 , 2027-03-10 , 2028-03-10"
+  },
+  {
+    "Title": "National Watermelon Day",
+    "Target URL": "https://www.almanac.com/national-watermelon-day",
+    "Dates": "2025-08-03 , 2026-08-03 , 2027-08-03 , 2028-08-03"
+  },
+  {
+    "Title": "National Garden Month Begins",
+    "Target URL": NaN,
+    "Dates": "2026-04-01 , 2027-04-01 , 2028-04-01"
+  },
+  {
+    "Title": "National Flower Day",
+    "Target URL": "https://www.almanac.com/national-flower-day",
+    "Dates": "2026-03-21 , 2027-03-21 , 2028-03-21"
+  },
+  {
+    "Title": "National Cheesecake Day",
+    "Target URL": "https://www.almanac.com/national-cheesecake-day",
+    "Dates": "2025-07-30 , 2026-07-30 , 2027-07-30 , 2028-07-30"
+  },
+  {
+    "Title": "Women Veterans Recognition Day",
+    "Target URL": NaN,
+    "Dates": "2026-06-12 , 2027-06-12 , 2028-06-12"
+  },
+  {
+    "Title": "Helen Keller Day",
+    "Target URL": NaN,
+    "Dates": "2026-06-27 , 2027-06-27 , 2028-06-27"
+  },
+  {
+    "Title": "National Hot Dog Day",
+    "Target URL": "https://www.almanac.com/national-hot-dog-day",
+    "Dates": "2026-07-15 , 2027-07-21 , 2028-07-19"
+  }
+        ];
+
+        // Set HTML structure using innerHTML
+        document.getElementById('HolidayContainer').innerHTML = `
+        <div class="holiday-app">
+            <style>
+                /* Main container */
+                .holiday-app {
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    max-width: 100%;
+                    padding: 15px;
+                    box-sizing: border-box;
+                    margin: 0 auto;
+                }
+                
+                /* Heading */
+                .holiday-app h1 {
+                    color: #2c3e50;
+                    text-align: center;
+                    font-size: clamp(1.5rem, 4vw, 2rem);
+                    margin-bottom: 20px;
+                    padding: 0 10px;
+                }
+                
+                /* Table styles */
+                .holiday-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 0 auto;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                }
+                
+                .holiday-table th {
+                    background-color: #3498db;
+                    color: white;
+                    padding: 12px 10px;
+                    text-align: left;
+                    font-weight: 500;
+                    position: sticky;
+                    top: 0;
+                }
+                
+                .holiday-table td {
+                    padding: 10px 10px;
+                    border-bottom: 1px solid #e0e0e0;
+                    vertical-align: top;
+                }
+                
+                .holiday-table tr:nth-child(even) {
+                    background-color: #f8f9fa;
+                }
+                
+                .holiday-table tr:hover {
+                    background-color: #e8f4fc;
+                }
+                
+                /* Link styling */
+                .holiday-link {
+                    color: #2980b9;
+                    text-decoration: none;
+                    font-weight: 500;
+                    word-break: break-word;
+                }
+                
+                .holiday-link:hover {
+                    text-decoration: underline;
+                }
+                
+                /* Footer note */
+                .disclaimer {
+                    font-size: 0.85rem;
+                    color: #7f8c8d;
+                    text-align: center;
+                    margin-top: 20px;
+                    padding: 0 10px;
+                }
+                
+                /* No holidays message */
+                .no-upcoming {
+                    text-align: center;
+                    padding: 30px;
+                    color: #7f8c8d;
+                    font-size: 1.1rem;
+                    background-color: #f8f9fa;
+                    border-radius: 5px;
+                    margin: 20px 0;
+                }
+
+                /* ========== MOBILE RESPONSIVE STYLES ========== */
+                @media (max-width: 768px) {
+                    .holiday-app {
+                        padding: 10px;
+                    }
+                    
+                    .holiday-table {
+                        display: block;
+                        overflow-x: auto;
+                        -webkit-overflow-scrolling: touch;
+                        white-space: nowrap;
+                    }
+                    
+                    .holiday-table th, 
+                    .holiday-table td {
+                        padding: 8px 8px;
+                        font-size: 0.9rem;
+                    }
+                    
+                    .holiday-app h1 {
+                        font-size: 1.5rem;
+                        margin-bottom: 15px;
+                    }
+                }
+
+                /* Small mobile devices */
+                @media (max-width: 480px) {
+                    .holiday-table th, 
+                    .holiday-table td {
+                        padding: 6px 6px;
+                        font-size: 0.85rem;
+                    }
+                    
+                    .holiday-link {
+                        font-size: 0.9rem;
+                    }
+                    
+                    .disclaimer {
+                        font-size: 0.8rem;
+                    }
+                }
+            </style>
+            
+            <h1>Upcoming US Holidays</h1>
+            <div id="upcoming-holidays-container"></div>
+            <p class="disclaimer">Showing holidays from today onward (New York time)</p>
+        </div>
+        `;
+
+        // Helper functions
+        function getCurrentDateInNY() {
+            const options = { timeZone: "America/New_York" };
+            const today = new Date();
+            const year = today.toLocaleString("en-US", { year: "numeric", ...options });
+            const month = today.toLocaleString("en-US", { month: "2-digit", ...options });
+            const day = today.toLocaleString("en-US", { day: "2-digit", ...options });
+            return `${year}-${month}-${day}`;
+        }
+
+        function formatDateForDisplay(dateStr) {
+            const [year, month, day] = dateStr.split('-');
+            const date = new Date(year, month - 1, day);
+            return date.toLocaleDateString('en-US', { 
+                month: 'long', 
+                day: 'numeric', 
+                year: 'numeric' 
+            });
+        }
+
+        function getDayOfWeek(dateStr) {
+            const [year, month, day] = dateStr.split('-');
+            const date = new Date(year, month - 1, day);
+            return date.toLocaleDateString('en-US', { weekday: 'long' });
+        }
+
+        function processHolidayData() {
+            const today = getCurrentDateInNY();
+            const upcomingHolidays = [];
+            
+            holidaysData.forEach(holiday => {
+                // Clean and split the dates string
+                const dateStrings = holiday.Dates.split(/\s*,\s*/);
+                
+                // Find the next occurrence of this holiday
+                const nextDate = dateStrings.find(date => date >= today);
+                
+                if (nextDate) {
+                    upcomingHolidays.push({
+                        date: nextDate.trim(),
+                        name: holiday.Title,
+                        url: holiday["Target URL"] && 
+                             holiday["Target URL"].trim() !== "" && 
+                             holiday["Target URL"].trim() !== "NaN" 
+                                ? holiday["Target URL"].trim() 
+                                : null
+                    });
+                }
+            });
+            
+            return upcomingHolidays.sort((a, b) => a.date.localeCompare(b.date));
+        }
+
+        function displayUpcomingHolidays() {
+            const container = document.getElementById('upcoming-holidays-container');
+            const holidays = processHolidayData();
+            
+            if (holidays.length === 0) {
+                container.innerHTML = '<div class="no-upcoming">No upcoming holidays found.</div>';
+                return;
+            }
+            
+            let html = `
+                <table class="holiday-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Day</th>
+                            <th>Holiday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            holidays.forEach(holiday => {
+                html += `
+                    <tr>
+                        <td>${formatDateForDisplay(holiday.date)}</td>
+                        <td>${getDayOfWeek(holiday.date)}</td>
+                        <td>
+                            ${holiday.url 
+                                ? `<a href="${holiday.url}" class="holiday-link" target="_blank" rel="noopener">${holiday.name}</a>` 
+                                : holiday.name}
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            html += `
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = html;
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', displayUpcomingHolidays);
+    </script>
+</body>
+</html>
