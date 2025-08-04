@@ -3,15 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upcoming US Holidays</title>
+    <title>US Holidays Calendar</title>
+    <style>
+        /* Shared styles for both components */
+        .holiday-component {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .holiday-component h1 {
+            color: #ad2a24;
+            line-height: 1.3;
+            margin: 0 0 20px 0;
+            font-size: 28px;
+        }
+        
+        .holiday-link {
+            color: #ad2a24;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .holiday-link:hover {
+            text-decoration: underline;
+        }
+        
+        .disclaimer {
+            font-size: 14px;
+            color: #95a5a6;
+            font-style: italic;
+            text-align: center;
+            margin: 20px 0 0 0;
+        }
+        
+        /* Today's Holidays specific styles */
+        #CalculatorContainer .hero-box {
+            background-color: #f8e8e8;
+            border-left: 5px solid #ad2a24;
+            padding: 25px;
+            margin: 0 0 30px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        #CalculatorContainer .hero-box h2 {
+            color: #ad2a24;
+            margin: 0 0 15px 0;
+            font-size: 22px;
+        }
+        
+        #CalculatorContainer .holiday-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        #CalculatorContainer .holiday-list li {
+            margin: 0 0 15px 0;
+            padding: 0 0 0 25px;
+            position: relative;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        
+        #CalculatorContainer .holiday-list li:before {
+            content: "🎉";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        #CalculatorContainer .holiday-type {
+            color: #7f8c8d;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+        
+        #CalculatorContainer .holiday-details {
+            display: block;
+            color: #555;
+            font-size: 16px;
+            margin: 5px 0 0 0;
+        }
+        
+        #CalculatorContainer .no-holiday {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 0 0 30px 0;
+        }
+        
+        #CalculatorContainer .no-holiday p {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin: 0 0 10px 0;
+        }
+        
+        /* Upcoming Holidays specific styles */
+        #HolidayContainer .holiday-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        #HolidayContainer .holiday-table th {
+            background-color: #ad2a24;
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+        }
+        
+        #HolidayContainer .holiday-table td {
+            padding: 10px 10px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+        
+        #HolidayContainer .holiday-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        #HolidayContainer .holiday-table tr:hover {
+            background-color: #f5e6e5;
+        }
+        
+        #HolidayContainer .no-upcoming {
+            text-align: center;
+            padding: 30px;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .holiday-component {
+                padding: 15px;
+            }
+            
+            #CalculatorContainer .holidays-title,
+            #HolidayContainer h1 {
+                font-size: 24px;
+            }
+            
+            #CalculatorContainer .hero-box {
+                padding: 20px 15px;
+            }
+            
+            #CalculatorContainer .holiday-list li {
+                font-size: 16px;
+            }
+            
+            #HolidayContainer .holiday-table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                white-space: nowrap;
+            }
+            
+            #HolidayContainer .holiday-table th, 
+            #HolidayContainer .holiday-table td {
+                padding: 8px 8px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .holiday-component {
+                padding: 10px;
+            }
+            
+            #CalculatorContainer .holidays-title,
+            #HolidayContainer h1 {
+                font-size: 20px;
+            }
+            
+            #CalculatorContainer .holiday-list li {
+                font-size: 15px;
+                padding-left: 20px;
+            }
+            
+            #HolidayContainer .holiday-table th, 
+            #HolidayContainer .holiday-table td {
+                padding: 6px 6px;
+                font-size: 0.85rem;
+            }
+            
+            #HolidayContainer .holiday-link {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Today's Holidays Component -->
+    <div id="CalculatorContainer"></div>
+    
+    <!-- Upcoming Holidays Component -->
     <div id="HolidayContainer"></div>
 
     <script>
+        // Shared holiday data (only defined once)
         const holidaysData = [
-            
-  {
+            {
     "Title": "Abraham Lincoln's Birthday",
     "Target URL": "https://www.almanac.com/abraham-lincoln-almanac-and-murder-trial",
     "Dates": "2025-02-12 , 2026-02-12 , 2027-02-12 , 2028-02-12"
@@ -788,248 +991,254 @@
   }
         ];
 
-        // Set HTML structure using innerHTML
-        document.getElementById('HolidayContainer').innerHTML = `
-        <div class="holiday-app">
-            <style>
-                /* Main container */
-                .holiday-app {
-                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                    max-width: 100%;
-                    padding: 15px;
-                    box-sizing: border-box;
-                    margin: 0 auto;
-                }
-                
-                /* Heading */
-                .holiday-app h1 {
-                    color: #2c3e50;
-                    text-align: center;
-                    font-size: clamp(1.5rem, 4vw, 2rem);
-                    margin-bottom: 20px;
-                    padding: 0 10px;
-                }
-                
-                /* Table styles */
-                .holiday-table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    margin: 0 auto;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                }
-                
-                .holiday-table th {
-                    background-color: #ad2a24;
-                    color: white;
-                    padding: 12px 10px;
-                    text-align: left;
-                    font-weight: 500;
-                    position: sticky;
-                    top: 0;
-                }
-                
-                .holiday-table td {
-                    padding: 10px 10px;
-                    border-bottom: 1px solid #e0e0e0;
-                    vertical-align: top;
-                }
-                
-                .holiday-table tr:nth-child(even) {
-                    background-color: #f8f9fa;
-                }
-                
-                .holiday-table tr:hover {
-                    background-color: #f5e6e5;
-                }
-                
-                /* Link styling */
-                .holiday-link {
-                    color: #ad2a24;
-                    text-decoration: none;
-                    font-weight: 500;
-                    word-break: break-word;
-                }
-                
-                .holiday-link:hover {
-                    text-decoration: underline;
-                    color: #8a1f1a;
-                }
-                
-                /* Footer note */
-                .disclaimer {
-                    font-size: 0.85rem;
-                    color: #7f8c8d;
-                    text-align: center;
-                    margin-top: 20px;
-                    padding: 0 10px;
-                }
-                
-                /* No holidays message */
-                .no-upcoming {
-                    text-align: center;
-                    padding: 30px;
-                    color: #7f8c8d;
-                    font-size: 1.1rem;
-                    background-color: #f8f9fa;
-                    border-radius: 5px;
-                    margin: 20px 0;
-                }
-
-                /* ========== MOBILE RESPONSIVE STYLES ========== */
-                @media (max-width: 768px) {
-                    .holiday-app {
-                        padding: 10px;
-                    }
-                    
-                    .holiday-table {
-                        display: block;
-                        overflow-x: auto;
-                        -webkit-overflow-scrolling: touch;
-                        white-space: nowrap;
-                    }
-                    
-                    .holiday-table th, 
-                    .holiday-table td {
-                        padding: 8px 8px;
-                        font-size: 0.9rem;
-                    }
-                    
-                    .holiday-app h1 {
-                        font-size: 1.5rem;
-                        margin-bottom: 15px;
-                    }
-                }
-
-                /* Small mobile devices */
-                @media (max-width: 480px) {
-                    .holiday-table th, 
-                    .holiday-table td {
-                        padding: 6px 6px;
-                        font-size: 0.85rem;
-                    }
-                    
-                    .holiday-link {
-                        font-size: 0.9rem;
-                    }
-                    
-                    .disclaimer {
-                        font-size: 0.8rem;
-                    }
-                }
-            </style>
+        // ========== TODAY'S HOLIDAYS FUNCTIONALITY ==========
+        (function initTodaysHolidays() {
+            const container = document.getElementById('CalculatorContainer');
             
-            <h1>Upcoming US Holidays</h1>
-            <div id="upcoming-holidays-container"></div>
-            <p class="disclaimer">Showing holidays from today until the end of the year (New York time)</p>
-        </div>
-        `;
+            container.innerHTML = `
+                <div class="holiday-component">
+                    <h1 class="holidays-title">Today's Holidays in the United States</h1>
+                    <div id="today-holidays-container" class="holidays-results"></div>
+                    <p class="disclaimer">Holidays are calculated using the local time in New York.</p>
+                </div>
+            `;
 
-        // Helper functions
-        function getCurrentDateInNY() {
-            const options = { timeZone: "America/New_York" };
-            const today = new Date();
-            const year = today.toLocaleString("en-US", { year: "numeric", ...options });
-            const month = today.toLocaleString("en-US", { month: "2-digit", ...options });
-            const day = today.toLocaleString("en-US", { day: "2-digit", ...options });
-            return `${year}-${month}-${day}`;
-        }
-
-        function getEndOfYearDate() {
-            const options = { timeZone: "America/New_York" };
-            const today = new Date();
-            const year = today.toLocaleString("en-US", { year: "numeric", ...options });
-            return `${year}-12-31`;
-        }
-
-        function formatDateForDisplay(dateStr) {
-            const [year, month, day] = dateStr.split('-');
-            const date = new Date(year, month - 1, day);
-            return date.toLocaleDateString('en-US', { 
-                month: 'long', 
-                day: 'numeric', 
-                year: 'numeric' 
-            });
-        }
-
-        function getDayOfWeek(dateStr) {
-            const [year, month, day] = dateStr.split('-');
-            const date = new Date(year, month - 1, day);
-            return date.toLocaleDateString('en-US', { weekday: 'long' });
-        }
-
-        function processHolidayData() {
-            const today = getCurrentDateInNY();
-            const endOfYear = getEndOfYearDate();
-            const upcomingHolidays = [];
-            
-            holidaysData.forEach(holiday => {
-                // Clean and split the dates string
-                const dateStrings = holiday.Dates.split(/\s*,\s*/);
+            // Process the holiday data into a usable format
+            function processHolidayData() {
+                const processedData = [];
                 
-                // Find the next occurrence of this holiday within current year
-                const nextDate = dateStrings.find(date => date >= today && date <= endOfYear);
-                
-                if (nextDate) {
-                    upcomingHolidays.push({
-                        date: nextDate.trim(),
-                        name: holiday.Title,
-                        url: holiday["Target URL"] && 
-                             holiday["Target URL"].trim() !== "" && 
-                             holiday["Target URL"].trim() !== "NaN" 
-                                ? holiday["Target URL"].trim() 
-                                : null
+                holidaysData.forEach(item => {
+                    // Skip if no dates
+                    if (!item.Dates || item.Dates.trim() === '') return;
+                    
+                    // Clean up the URL (replace NaN or empty with empty string)
+                    let url = item['Target URL'] || '';
+                    if (url === ' ' || url === 'NaN') url = '';
+                    
+                    // Process the dates string into an array
+                    const dateArray = item.Dates.split(',').map(date => date.trim());
+                    
+                    processedData.push({
+                        name: item.Title,
+                        url: url,
+                        dates: dateArray
                     });
-                }
-            });
-            
-            return upcomingHolidays.sort((a, b) => a.date.localeCompare(b.date));
-        }
-
-        function displayUpcomingHolidays() {
-            const container = document.getElementById('upcoming-holidays-container');
-            const holidays = processHolidayData();
-            
-            if (holidays.length === 0) {
-                container.innerHTML = '<div class="no-upcoming">No upcoming holidays found for the rest of this year.</div>';
-                return;
+                });
+                
+                return processedData;
             }
-            
-            let html = `
-                <table class="holiday-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Day</th>
-                            <th>Holiday</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-            
-            holidays.forEach(holiday => {
-                html += `
-                    <tr>
-                        <td>${formatDateForDisplay(holiday.date)}</td>
-                        <td>${getDayOfWeek(holiday.date)}</td>
-                        <td>
-                            ${holiday.url 
-                                ? `<a href="${holiday.url}" class="holiday-link" target="_blank" rel="noopener">${holiday.name}</a>` 
-                                : holiday.name}
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            html += `
-                    </tbody>
-                </table>
-            `;
-            
-            container.innerHTML = html;
-        }
 
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', displayUpcomingHolidays);
+            // Get current date in YYYY-MM-DD format (local time in New York)
+            function getCurrentDateInNY() {
+                const nyTime = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
+                const today = new Date(nyTime);
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, '0');
+                const day = String(today.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            }
+
+            // Format date for display (e.g., "December 25, 2025")
+            function formatDateForDisplay(dateStr) {
+                const [year, month, day] = dateStr.split('-');
+                const monthNames = ["January", "February", "March", "April", "May", "June",
+                                  "July", "August", "September", "October", "November", "December"];
+                return `${monthNames[parseInt(month) - 1]} ${parseInt(day)}, ${year}`;
+            }
+
+            // Get day of week (e.g., "Wednesday")
+            function getDayOfWeek(dateStr) {
+                const [year, month, day] = dateStr.split('-');
+                const date = new Date(year, month - 1, day);
+                return date.toLocaleDateString('en-US', { weekday: 'long' });
+            }
+
+            // Find holidays for a specific date
+            function getHolidaysForDate(date, data) {
+                const matchingHolidays = [];
+                
+                data.forEach(holiday => {
+                    if (holiday.dates.includes(date)) {
+                        matchingHolidays.push({
+                            name: holiday.name,
+                            url: holiday.url,
+                            type: "",
+                            details: ""
+                        });
+                    }
+                });
+                
+                return matchingHolidays;
+            }
+
+            // Display holidays for a specific date
+            function displayHolidaysForDate(date, data) {
+                const holidaysContainer = document.getElementById('today-holidays-container');
+                const todaysHolidays = getHolidaysForDate(date, data);
+                const dayOfWeek = getDayOfWeek(date);
+                const formattedDate = formatDateForDisplay(date);
+
+                if (todaysHolidays.length > 0) {
+                    let html = `
+                        <div class="hero-box">
+                            <h2>Yes! Today is a holiday!</h2>
+                            <p>Today is ${dayOfWeek}, ${formattedDate} and we're celebrating:</p>
+                            <ul class="holiday-list">
+                    `;
+
+                    todaysHolidays.forEach(holiday => {
+                        html += `
+                            <li>
+                                <span class="holiday-name">
+                                    ${holiday.url ? `<a href="${holiday.url}" class="holiday-link" target="_blank">${holiday.name}</a>` : holiday.name}
+                                </span>
+                                ${holiday.type ? `<span class="holiday-type">(${holiday.type})</span>` : ''}
+                                ${holiday.details ? `<span class="holiday-details">${holiday.details}</span>` : ''}
+                            </li>
+                        `;
+                    });
+
+                    html += `
+                            </ul>
+                        </div>
+                    `;
+
+                    holidaysContainer.innerHTML = html;
+                } else {
+                    holidaysContainer.innerHTML = `
+                        <div class="no-holiday">
+                            <p>There are no holidays in the United States today.</p>
+                            <p>Today is ${dayOfWeek}, ${formattedDate}</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Initialize the page with today's holidays
+            const processedData = processHolidayData();
+            const today = getCurrentDateInNY();
+            displayHolidaysForDate(today, processedData);
+        })();
+
+        // ========== UPCOMING HOLIDAYS FUNCTIONALITY ==========
+        (function initUpcomingHolidays() {
+            const container = document.getElementById('HolidayContainer');
+            
+            container.innerHTML = `
+                <div class="holiday-component">
+                    <h1>Upcoming US Holidays</h1>
+                    <div id="upcoming-holidays-container"></div>
+                    <p class="disclaimer">Showing holidays from today until the end of the year (New York time)</p>
+                </div>
+            `;
+
+            // Helper functions
+            function getCurrentDateInNY() {
+                const options = { timeZone: "America/New_York" };
+                const today = new Date();
+                const year = today.toLocaleString("en-US", { year: "numeric", ...options });
+                const month = today.toLocaleString("en-US", { month: "2-digit", ...options });
+                const day = today.toLocaleString("en-US", { day: "2-digit", ...options });
+                return `${year}-${month}-${day}`;
+            }
+
+            function getEndOfYearDate() {
+                const options = { timeZone: "America/New_York" };
+                const today = new Date();
+                const year = today.toLocaleString("en-US", { year: "numeric", ...options });
+                return `${year}-12-31`;
+            }
+
+            function formatDateForDisplay(dateStr) {
+                const [year, month, day] = dateStr.split('-');
+                const date = new Date(year, month - 1, day);
+                return date.toLocaleDateString('en-US', { 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+            }
+
+            function getDayOfWeek(dateStr) {
+                const [year, month, day] = dateStr.split('-');
+                const date = new Date(year, month - 1, day);
+                return date.toLocaleDateString('en-US', { weekday: 'long' });
+            }
+
+            function processHolidayData() {
+                const today = getCurrentDateInNY();
+                const endOfYear = getEndOfYearDate();
+                const upcomingHolidays = [];
+                
+                holidaysData.forEach(holiday => {
+                    // Clean and split the dates string
+                    const dateStrings = holiday.Dates.split(/\s*,\s*/);
+                    
+                    // Find the next occurrence of this holiday within current year
+                    const nextDate = dateStrings.find(date => date >= today && date <= endOfYear);
+                    
+                    if (nextDate) {
+                        upcomingHolidays.push({
+                            date: nextDate.trim(),
+                            name: holiday.Title,
+                            url: holiday["Target URL"] && 
+                                 holiday["Target URL"].trim() !== "" && 
+                                 holiday["Target URL"].trim() !== "NaN" 
+                                    ? holiday["Target URL"].trim() 
+                                    : null
+                        });
+                    }
+                });
+                
+                return upcomingHolidays.sort((a, b) => a.date.localeCompare(b.date));
+            }
+
+            function displayUpcomingHolidays() {
+                const container = document.getElementById('upcoming-holidays-container');
+                const holidays = processHolidayData();
+                
+                if (holidays.length === 0) {
+                    container.innerHTML = '<div class="no-upcoming">No upcoming holidays found for the rest of this year.</div>';
+                    return;
+                }
+                
+                let html = `
+                    <table class="holiday-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Day</th>
+                                <th>Holiday</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+                
+                holidays.forEach(holiday => {
+                    html += `
+                        <tr>
+                            <td>${formatDateForDisplay(holiday.date)}</td>
+                            <td>${getDayOfWeek(holiday.date)}</td>
+                            <td>
+                                ${holiday.url 
+                                    ? `<a href="${holiday.url}" class="holiday-link" target="_blank" rel="noopener">${holiday.name}</a>` 
+                                    : holiday.name}
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                html += `
+                        </tbody>
+                    </table>
+                `;
+                
+                container.innerHTML = html;
+            }
+
+            // Initialize when page loads
+            document.addEventListener('DOMContentLoaded', displayUpcomingHolidays);
+        })();
     </script>
 </body>
 </html>
